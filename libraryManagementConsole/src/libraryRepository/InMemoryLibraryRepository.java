@@ -74,8 +74,13 @@ public class InMemoryLibraryRepository implements LibraryRepository {
     }
 
     @Override
-    public List<BookBorrowEntity> findBorrowedBooksByIdAndBorrowedTrue(String id) {
+    public List<BookBorrowEntity> findBorrowedBooksByIdAndCurrentBorrowed(String id) {
         return borrowedBooks.stream().filter(book->!book.isReturned()&&book.getUserId().equals(id)).toList();
+    }
+
+    @Override
+    public List<BookBorrowEntity> findBorrowedBooksAndCurrentBorrowed(String id) {
+        return borrowedBooks.stream().filter(book->!book.isReturned()).toList();
     }
 
     @Override

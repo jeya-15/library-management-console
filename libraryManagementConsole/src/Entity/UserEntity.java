@@ -9,15 +9,19 @@ public class UserEntity {
 
     private String password;
 
+
+    private String role;
+
     private int limit = 5;
 
     public String getId() {
         return id;
     }
 
-    public UserEntity(String name, String password) {
+    public UserEntity(String name, String password, String role) {
         this.name = name;
         this.password = password;
+        this.role = role;
 
     }
 
@@ -48,4 +52,12 @@ public class UserEntity {
     public void setLimit(int limit) {
         this.limit = limit;
     }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 }

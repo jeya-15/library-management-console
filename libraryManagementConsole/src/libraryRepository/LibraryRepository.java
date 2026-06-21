@@ -22,7 +22,9 @@ public interface LibraryRepository {
 
     List<BookBorrowEntity> findBorrowedBooksById(String id);
 
-    List<BookBorrowEntity> findBorrowedBooksByIdAndBorrowedTrue(String id);
+    List<BookBorrowEntity> findBorrowedBooksByIdAndCurrentBorrowed(String id);
+
+    List<BookBorrowEntity> findBorrowedBooksAndCurrentBorrowed(String id);
 
     List<BookBorrowEntity> findOverDueBorrowedBooks(String id);
 
