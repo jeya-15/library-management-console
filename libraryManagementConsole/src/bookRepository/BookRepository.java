@@ -1,0 +1,4 @@
+package bookRepository;
+
+public interface BookRepository {
+}
