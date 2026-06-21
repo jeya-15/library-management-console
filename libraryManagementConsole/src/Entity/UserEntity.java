@@ -9,14 +9,16 @@ public class UserEntity {
 
     private String password;
 
+    private int limit = 5;
+
     public String getId() {
         return id;
     }
 
-    public UserEntity(String id, String name, String password) {
-        this.id = id;
+    public UserEntity(String name, String password) {
         this.name = name;
         this.password = password;
+
     }
 
     public void setId(String id) {
@@ -39,4 +41,11 @@ public class UserEntity {
         this.password = password;
     }
 
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
 }

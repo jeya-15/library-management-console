@@ -7,11 +7,9 @@ public class BookEntity {
 
     private String name;
 
-
     private int count;
 
-    public BookEntity(String id, String name, int count) {
-        this.id = id;
+    public BookEntity( String name, int count) {
         this.name = name;
         this.count = count;
     }
