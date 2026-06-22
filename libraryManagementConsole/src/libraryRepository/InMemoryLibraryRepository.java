@@ -13,11 +13,11 @@ import java.util.Map;
 public class InMemoryLibraryRepository implements LibraryRepository {
 
 
-    Map<String, UserEntity> users = new HashMap<>();
+    private final Map<String, UserEntity> users = new HashMap<>();
 
-    Map<String, BookEntity> books = new HashMap<>();
+    private final Map<String, BookEntity> books = new HashMap<>();
 
-    List<BookBorrowEntity> borrowedBooks = new ArrayList<>();
+    private final List<BookBorrowEntity> borrowedBooks = new ArrayList<>();
 
     int userIdNumber = 1;
 
@@ -42,7 +42,7 @@ public class InMemoryLibraryRepository implements LibraryRepository {
 
     @Override
     public void addBook(BookEntity book) {
-        String IdNumber = String.format("%s5", bookIdNumber).replace(' ', '0');
+        String IdNumber = String.format("%s05", bookIdNumber).replace(' ', '0');
         String bookId = "BOOK" + IdNumber;
         book.setId(bookId);
         books.put(bookId, book);

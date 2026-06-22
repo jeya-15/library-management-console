@@ -76,7 +76,6 @@ public class LibraryService {
             return;
         }
 
-        BookBorrowEntity bookBorrow = new BookBorrowEntity(userId, bookId);
         book.setCount(book.getCount() - 1);
         user.setLimit(user.getLimit() - 1);
         libraryRepository.addBorrowBook(userId,book);
@@ -107,6 +106,7 @@ public class LibraryService {
                 break;
             }
         }
+        if(bookBorrow==null) return;
         bookBorrow.setReturned(true);
         BookEntity book = libraryRepository.findBookById(bookId);
         book.setCount(book.getCount() + 1);
