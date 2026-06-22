@@ -12,6 +12,10 @@ public class LibraryController {
 
     LibraryService libraryService;
 
+    public LibraryController(LibraryService libraryService) {
+        this.libraryService = libraryService;
+    }
+
     public UserEntity login(String id, String password) {
 
         UserEntity user = libraryService.login(id, password);

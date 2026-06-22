@@ -13,6 +13,11 @@ public class LibraryService {
     LibraryRepository libraryRepository;
     Scanner scanner;
 
+    public LibraryService(LibraryRepository libraryRepository, Scanner scanner) {
+        this.libraryRepository = libraryRepository;
+        this.scanner = scanner;
+    }
+
     public UserEntity login(String id, String password) {
         UserEntity user = libraryRepository.findUserById(id);
         if (user == null) {

@@ -23,6 +23,11 @@ public class InMemoryLibraryRepository implements LibraryRepository {
 
     int bookIdNumber = 1;
 
+    {
+        UserEntity admin = new UserEntity("Jeya", "jeya", "ADMIN");
+        users.put("1", admin);
+    }
+
     @Override
     public UserEntity findUserById(String id) {
         UserEntity user = users.get(id);
@@ -62,6 +67,7 @@ public class InMemoryLibraryRepository implements LibraryRepository {
         user.setId(userId);
         users.put(userId, user);
     }
+
 
     @Override
     public List<BookBorrowEntity> getBorrowedBooks() {

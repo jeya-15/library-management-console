@@ -1,6 +1,8 @@
 import Entity.BookBorrowEntity;
 import Entity.UserEntity;
 import libraryController.LibraryController;
+import libraryRepository.InMemoryLibraryRepository;
+import libraryRepository.LibraryRepository;
 import libraryService.LibraryService;
 
 import java.util.Scanner;
@@ -9,10 +11,15 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Start");
 
-
-        LibraryController libraryController = new LibraryController();
-
         Scanner sc = new Scanner(System.in);
+
+        LibraryRepository libraryRepository = new InMemoryLibraryRepository();
+
+        LibraryService libraryService = new LibraryService(libraryRepository,sc);
+
+
+        LibraryController libraryController = new LibraryController(libraryService);
+
 
         UserEntity user = null;
 
@@ -23,10 +30,10 @@ public class Main {
 
 
             if (user == null) {
-                System.out.println("Enter UserId: ");
+                System.out.print("Enter UserId: ");
                 String id = sc.nextLine();
                 System.out.println();
-                System.out.println("Enter password: ");
+                System.out.print("Enter password: ");
                 String password = sc.nextLine();
                 System.out.println();
                 user = libraryController.login(id, password);
