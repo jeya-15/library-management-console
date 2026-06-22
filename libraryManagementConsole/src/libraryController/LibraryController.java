@@ -1,65 +1,115 @@
 package libraryController;
 
+
 import Entity.BookBorrowEntity;
 import Entity.BookEntity;
 import Entity.UserEntity;
-import libraryRepository.LibraryRepository;
+import libraryService.LibraryService;
 
 import java.util.List;
 
 public class LibraryController {
 
 
-    UserEntity CreateUser(String name, String password){
-     return null;
+    LibraryService libraryService;
+
+    UserEntity login(String id, String password) {
+
+        UserEntity user = libraryService.login(id,password);
+
+        if(user==null){
+            System.out.println("User not loggedIn");
+            return null;
+        }
+
+        return user;
     }
 
-    UserEntity login(String id, String password){
-        return null;
-    }
-
-    BookEntity createBook(String name,int count){
-        return null;
-    }
-
-    BookEntity editBook(String id,String name, int count){
-        return null;
-    }
-
-    void lendBook(String userId, String bookId){
+    void CreateUser(String name, String password, String role) {
+        libraryService.createUser(name,password,role);
+        System.out.println("User created successfully!");
         return;
     }
 
-    void returnBook(String UserId){
+
+    void createBook(String name, int count) {
+        libraryService.createBook(name,count);
+        System.out.println("Book created successfully!");
         return;
     }
 
-    List<BookEntity> getAllBooks(){
-        return List.of();
+    void editBook(String id, String name, int count) {
+        libraryService.editBook(id,name,count);
+        System.out.println("Book edited successfully!");
+        return;
     }
 
-    BookEntity getBookById(){
-        return null;
+    void lendBook(String userId, String bookId) {
+        libraryService.lendBook(userId,bookId);
+        return;
     }
 
-    List<BookBorrowEntity> getCurrentBorrowedBooks(){
-        return List.of();
+    void returnBook(String userId) {
+        libraryService.returnBook(userId);
+        return;
     }
 
-    List<BookBorrowEntity> getAllOverDueBooks(){
-        return List.of();
+
+    void getBookById(String id) {
+        libraryService.getBookById(id);
+        return ;
     }
 
-    UserEntity getUser(String id){
-        return null;
+    void getCurrentBorrowedBooks() {
+        List<BookBorrowEntity> lst = libraryService.getCurrentBorrowedBooks();
+        if(lst.isEmpty()) {
+            System.out.println("No current borrowed books!");
+            return;
+        }
+        for(BookBorrowEntity book:lst){
+            System.out.println("Book ID: "+book.getBookId()+" - User Name: "+book.getUserId()+"- Returned: "+book.isReturned()+" - Due Date: "+book.getDueDate());
+        }
+        return;
     }
 
-    List<BookBorrowEntity> getBorrowedBooksById(String id){
-        return null;
+    void getAllOverDueBooks() {
+        List<BookBorrowEntity> lst = libraryService.getAllOverDueBooks();
+        if(lst.isEmpty()) {
+            System.out.println("No books over due!");
+            return;
+        }
+        for(BookBorrowEntity book:lst){
+            System.out.println("Book ID: "+book.getBookId()+" - User Name: "+book.getUserId()+"- Returned: "+book.isReturned()+" - Due Date: "+book.getDueDate());
+        }
+        return;
     }
 
-    List<BookBorrowEntity> getAllCurrentBorrowedBooksById(String id){
-        return null;
+
+
+    void getBorrowedBooksById(String id) {
+        List<BookBorrowEntity> lst = libraryService.getBorrowedBooksById(id);
+        if(lst.isEmpty()) {
+            System.out.println("No books borrowed!");
+            return;
+        }
+        for(BookBorrowEntity book:lst){
+            System.out.println("Book ID: "+book.getBookId()+" - User Name: "+book.getUserId()+"- Returned: "+book.isReturned()+" - Due Date: "+book.getDueDate());
+        }
+        return;
+    }
+
+    void getAllCurrentBorrowedBooksById(String id) {
+
+        List<BookBorrowEntity> lst = libraryService.getAllCurrentBorrowedBooksById(id);
+        if(lst.isEmpty()) {
+            System.out.println("No books borrowed!");
+            return;
+        }
+        for(BookBorrowEntity book:lst){
+            System.out.println("Book ID: "+book.getBookId()+" - User Name: "+book.getUserId()+"- Returned: "+book.isReturned()+" - Due Date: "+book.getDueDate());
+        }
+        return;
+
     }
 
 

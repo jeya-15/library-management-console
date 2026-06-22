@@ -24,8 +24,8 @@ public interface LibraryRepository {
 
     List<BookBorrowEntity> findBorrowedBooksByIdAndCurrentBorrowed(String id);
 
-    List<BookBorrowEntity> findBorrowedBooksAndCurrentBorrowed(String id);
+    List<BookBorrowEntity> findBorrowedBooksAndCurrentBorrowed();
 
-    List<BookBorrowEntity> findOverDueBorrowedBooks(String id);
+    List<BookBorrowEntity> findOverDueBorrowedBooks();
 
 }

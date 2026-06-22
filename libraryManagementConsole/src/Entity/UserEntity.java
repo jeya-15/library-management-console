@@ -9,7 +9,6 @@ public class UserEntity {
 
     private String password;
 
-
     private String role;
 
     private int limit = 5;
