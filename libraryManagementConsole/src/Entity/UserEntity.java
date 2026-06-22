@@ -13,15 +13,15 @@ public class UserEntity {
 
     private int limit = 5;
 
-    public String getId() {
-        return id;
-    }
-
     public UserEntity(String name, String password, String role) {
         this.name = name;
         this.password = password;
         this.role = role;
 
+    }
+
+    public String getId() {
+        return id;
     }
 
     public void setId(String id) {
@@ -51,6 +51,7 @@ public class UserEntity {
     public void setLimit(int limit) {
         this.limit = limit;
     }
+
     public String getRole() {
         return role;
     }

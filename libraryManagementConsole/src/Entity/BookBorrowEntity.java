@@ -6,13 +6,13 @@ public class BookBorrowEntity {
 
     private String userId;
     private String bookId;
-    private boolean returned=false;
+    private boolean returned = false;
     private LocalDateTime dueDate;
 
     public BookBorrowEntity(String userId, String bookId) {
         this.userId = userId;
         this.bookId = bookId;
-        this.dueDate = LocalDateTime.now().plusDays(14);;
+        this.dueDate = LocalDateTime.now().plusDays(14);
     }
 
     public String getUserId() {

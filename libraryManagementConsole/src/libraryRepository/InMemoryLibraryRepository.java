@@ -26,7 +26,7 @@ public class InMemoryLibraryRepository implements LibraryRepository {
     @Override
     public UserEntity findUserById(String id) {
         UserEntity user = users.get(id);
-        if(user==null){
+        if (user == null) {
             System.out.println("User not found!");
         }
         return user;
@@ -35,7 +35,7 @@ public class InMemoryLibraryRepository implements LibraryRepository {
     @Override
     public BookEntity findBookById(String id) {
         BookEntity book = books.get(id);
-        if(book==null){
+        if (book == null) {
             System.out.println("Book not found!");
         }
         return book;
@@ -43,24 +43,24 @@ public class InMemoryLibraryRepository implements LibraryRepository {
 
     @Override
     public void addBook(BookEntity book) {
-        String IdNumber = String.format("%s5",bookIdNumber).replace(' ','0');
-        String bookId = "BOOK"+IdNumber;
+        String IdNumber = String.format("%s5", bookIdNumber).replace(' ', '0');
+        String bookId = "BOOK" + IdNumber;
         book.setId(bookId);
-        books.put(bookId,book);
+        books.put(bookId, book);
     }
 
     @Override
     public void addBorrowBook(String userId, BookEntity book) {
-        BookBorrowEntity bookBorrow = new BookBorrowEntity(userId,book.getId());
+        BookBorrowEntity bookBorrow = new BookBorrowEntity(userId, book.getId());
         borrowedBooks.add(bookBorrow);
     }
 
     @Override
     public void addUser(UserEntity user) {
-        String IdNumber = String.format("%5s",userIdNumber).replace(' ','0');
-        String userId = "USER"+IdNumber;
+        String IdNumber = String.format("%5s", userIdNumber).replace(' ', '0');
+        String userId = "USER" + IdNumber;
         user.setId(userId);
-        users.put(userId,user);
+        users.put(userId, user);
     }
 
     @Override
@@ -70,22 +70,22 @@ public class InMemoryLibraryRepository implements LibraryRepository {
 
     @Override
     public List<BookBorrowEntity> findBorrowedBooksById(String id) {
-        return borrowedBooks.stream().filter(book->book.getUserId().equals(id)).toList();
+        return borrowedBooks.stream().filter(book -> book.getUserId().equals(id)).toList();
     }
 
     @Override
     public List<BookBorrowEntity> findBorrowedBooksByIdAndCurrentBorrowed(String id) {
-        return borrowedBooks.stream().filter(book->!book.isReturned()&&book.getUserId().equals(id)).toList();
+        return borrowedBooks.stream().filter(book -> !book.isReturned() && book.getUserId().equals(id)).toList();
     }
 
     @Override
     public List<BookBorrowEntity> findBorrowedBooksAndCurrentBorrowed() {
-        return borrowedBooks.stream().filter(book->!book.isReturned()).toList();
+        return borrowedBooks.stream().filter(book -> !book.isReturned()).toList();
     }
 
     @Override
     public List<BookBorrowEntity> findOverDueBorrowedBooks() {
-        return borrowedBooks.stream().filter(book->!book.isReturned()&&book.getDueDate().isBefore(LocalDateTime.now())).toList();
+        return borrowedBooks.stream().filter(book -> !book.isReturned() && book.getDueDate().isBefore(LocalDateTime.now())).toList();
     }
 
 }
