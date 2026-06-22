@@ -15,7 +15,7 @@ public class Main {
 
         LibraryRepository libraryRepository = new InMemoryLibraryRepository();
 
-        LibraryService libraryService = new LibraryService(libraryRepository,sc);
+        LibraryService libraryService = new LibraryService(libraryRepository);
 
 
         LibraryController libraryController = new LibraryController(libraryService);
@@ -109,7 +109,10 @@ public class Main {
                             System.out.print("Enter User ID: ");
                             String userId = sc.nextLine();
                             System.out.println();
-                            libraryController.returnBook(userId);
+                            System.out.print("Enter the Book ID: ");
+                            String bookId = sc.nextLine();
+                            System.out.println();
+                            libraryController.returnBook(userId,bookId);
                             break;
                         }
                         case 6: {

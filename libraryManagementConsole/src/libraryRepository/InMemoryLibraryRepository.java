@@ -30,20 +30,14 @@ public class InMemoryLibraryRepository implements LibraryRepository {
 
     @Override
     public UserEntity findUserById(String id) {
-        UserEntity user = users.get(id);
-        if (user == null) {
-            System.out.println("User not found!");
-        }
-        return user;
+
+        return users.get(id);
     }
 
     @Override
     public BookEntity findBookById(String id) {
-        BookEntity book = books.get(id);
-        if (book == null) {
-            System.out.println("Book not found!");
-        }
-        return book;
+
+        return books.get(id);
     }
 
     @Override

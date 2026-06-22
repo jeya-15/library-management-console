@@ -48,8 +48,8 @@ public class LibraryController {
         libraryService.lendBook(userId, bookId);
     }
 
-    public void returnBook(String userId) {
-        libraryService.returnBook(userId);
+    public void returnBook(String userId,String bookId) {
+        libraryService.returnBook(userId,bookId);
     }
 
 

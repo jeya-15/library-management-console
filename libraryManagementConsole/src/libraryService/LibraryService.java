@@ -10,12 +10,10 @@ import java.util.Scanner;
 
 public class LibraryService {
 
-    LibraryRepository libraryRepository;
-    Scanner scanner;
+    private final LibraryRepository libraryRepository;
 
-    public LibraryService(LibraryRepository libraryRepository, Scanner scanner) {
+    public LibraryService(LibraryRepository libraryRepository) {
         this.libraryRepository = libraryRepository;
-        this.scanner = scanner;
     }
 
     public UserEntity login(String id, String password) {
@@ -81,11 +79,12 @@ public class LibraryService {
         BookBorrowEntity bookBorrow = new BookBorrowEntity(userId, bookId);
         book.setCount(book.getCount() - 1);
         user.setLimit(user.getLimit() - 1);
+        libraryRepository.addBorrowBook(userId,book);
         System.out.println("Book lend successfully!");
 
     }
 
-    public void returnBook(String userId) {
+    public void returnBook(String userId,String bookId) {
 
         UserEntity user = libraryRepository.findUserById(userId);
         if (user == null) {
@@ -99,13 +98,6 @@ public class LibraryService {
             return;
         }
 
-        for (int i = 0; i < borrowBooks.size(); i++) {
-            BookBorrowEntity borrowBook = borrowBooks.get(i);
-            BookEntity book = libraryRepository.findBookById(borrowBook.getBookId());
-            System.out.println(i + 1 + ") " + book.getId() + ": " + book.getName() + " Due Date is " + borrowBook.getDueDate());
-        }
-        System.out.print("Enter the book id to return :");
-        String bookId = scanner.nextLine();
 
         BookBorrowEntity bookBorrow = null;
 
