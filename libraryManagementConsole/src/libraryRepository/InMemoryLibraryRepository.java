@@ -45,6 +45,7 @@ public class InMemoryLibraryRepository implements LibraryRepository {
         String IdNumber = String.format("%s05", bookIdNumber).replace(' ', '0');
         String bookId = "BOOK" + IdNumber;
         book.setId(bookId);
+        bookIdNumber++;
         books.put(bookId, book);
     }
 
@@ -59,6 +60,7 @@ public class InMemoryLibraryRepository implements LibraryRepository {
         String IdNumber = String.format("%5s", userIdNumber).replace(' ', '0');
         String userId = "USER" + IdNumber;
         user.setId(userId);
+        userIdNumber++;
         users.put(userId, user);
     }
 
